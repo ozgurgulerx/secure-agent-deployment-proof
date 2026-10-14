@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=77,<85"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "secure-agent-deployment-proof"
+version = "0.1.0"
+description = "Offline scaffold for an inspectable secure agent deployment workbench"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["setuptools>=77,<85", "build>=1.2,<2", "coverage>=7.6,<8", "mypy>=1.13,<3", "pip-audit>=2.7,<3", "ruff>=0.9,<1"]
+
+[project.scripts]
+secure-agent-proof = "secure_agent_deployment_proof.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.coverage.run]
+branch = true
+source = ["secure_agent_deployment_proof"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src"]
